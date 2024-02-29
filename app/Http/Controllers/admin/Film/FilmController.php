@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Film;
+namespace App\Http\Controllers\admin\Film;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Film\FilmRequest;
+use App\Http\Requests\Admin\Film\FilmRequest;
 use App\Http\Resources\Film\FilmResource;
 use App\Models\Film;
 use App\Services\FilmService;
-use Illuminate\Http\Request;
 
 class FilmController extends Controller
 {
@@ -24,8 +23,10 @@ class FilmController extends Controller
      */
     public function store(FilmRequest $request)
     {
-
         $data = $request->validated();
+
+
+
 
         $film = FilmService::store($data);
         return FilmResource::make($film);

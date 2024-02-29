@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Film;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FilmRequest extends FormRequest
+class UpdateProuductInCart extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +22,8 @@ class FilmRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>'required|string|unique:films',
-            'rating'=>'nullable',
-            'video_content_id'=>'required|integer|exists:video_contents,id',
-            'genres'=>'required|array|exists:genres,id'
-
+            'count_product'=>'required|integer|min:1',
+            'product_id'=>'required|integer|exists:products,id',
         ];
     }
 }

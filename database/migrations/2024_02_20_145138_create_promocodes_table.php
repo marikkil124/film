@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('value');
             $table->date('expired_at');
             $table->integer('limit_from');
-            $table->foreignId('user_id')->index()->constrained('users');
+            $table->foreignId('user_id')->index()->nullable()->constrained('users');
             $table->timestamps();
         });
     }

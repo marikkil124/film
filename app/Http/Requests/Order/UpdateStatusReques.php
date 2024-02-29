@@ -1,18 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Profile;
+namespace App\Http\Requests\Order;
 
+use App\Models\Order;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileRequest extends FormRequest
+class UpdateStatusReques extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -21,8 +15,10 @@ class ProfileRequest extends FormRequest
      */
     public function rules(): array
     {
+        $arr = array_keys(Order::STATUSES);
         return [
-            //
+            'status' => 'required|in:' . implode(',', $arr),
+
         ];
     }
 }

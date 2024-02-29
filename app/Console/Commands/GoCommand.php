@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Profile;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
 
 class GoCommand extends Command
 {
@@ -30,12 +31,16 @@ class GoCommand extends Command
      */
     public function handle()
     {
-        $genre = Genre::first();
-        $film = Film::where('id',6)->get();
-        $user = User::first();
-        dd($film);
-        dd($film->genre);
+//        $genre = Genre::first();
+//        $film = Film::where('id',6)->get();
+//        $user = User::first();
+//        dd($user->is_admin);
+        User::create([
+            'name' => 'marik',
+            'email' => 'marik@mail.ru',
+            'password' => Hash::make('123123'),
 
+        ]);
 
        // dd($user->profile->nickname);
         //dd($film->genre->toarray());

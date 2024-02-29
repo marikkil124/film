@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('firstname')->nullable();
             $table->string('surname')->nullable();
-            $table->string('nickname')->unique();
-            $table->integer('gender');
-            $table->text('phone');
+            $table->string('nickname')->unique()->nullable();
+            $table->integer('gender')->nullable();
+            $table->integer('balance')->nullable();
+            $table->text('phone')->nullable();;
             $table->date('PremiumStatus')->nullable();
-
+            $table->softDeletes();
             $table->foreignId('user_id')->index()->constrained();
             $table->timestamps();
         });
