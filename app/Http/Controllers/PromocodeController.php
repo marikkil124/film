@@ -10,7 +10,6 @@ class PromocodeController extends Controller
 {
     public function updateUser(UpdateUserRequest $request)
     {
-
         $data = $request->validationData();
         Promocode::where('user_id', auth()->id())->update([
             'user_id' => null,
@@ -20,7 +19,6 @@ class PromocodeController extends Controller
                 'user_id' => auth()->id(),
             ]
         );
-
         $p =Promocode::where('code',   $data['code'])->first();
         return PromocodeResource::make($p)->resolve();
 

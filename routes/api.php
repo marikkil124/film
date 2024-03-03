@@ -54,11 +54,16 @@ Route::middleware(['jwt.auth'])->group(function () {
     Route::patch('/order/{order}/products', [\App\Http\Controllers\OrderController::class, 'updateProducts']);
     //удаление  товара из заказа
     Route::delete('/order/{order}/products', [\App\Http\Controllers\OrderController::class, 'destroyProducts']);
+    //списание со счета/ покупка проудкта
+    Route::post('/order/{order}/transaction', [\App\Http\Controllers\OrderController::class, 'storeTransaction']);
 
         //создание транзакции (пополнение баланса)
-    Route::post('/transaction', [\App\Http\Controllers\TransactionController::class, 'store']);
+    Route::post('/transaction/store-type-debit', [\App\Http\Controllers\TransactionController::class, 'storeTypeDebit']);
     //платежная система сюда должна отправить статус успех
-    Route::patch('/transaction/{transaction}', [\App\Http\Controllers\TransactionController::class, 'updateStatus']);
+    Route::patch('/transaction/{transaction}/status-success', [\App\Http\Controllers\TransactionController::class, 'updateStatusSuccess']);
+    //платежная система сюда должна отправить статус ошибка
+    Route::patch('/transaction/{transaction}/status-external-failed', [\App\Http\Controllers\TransactionController::class, 'updateStatusExternalFailed']);
+
 
 });
 

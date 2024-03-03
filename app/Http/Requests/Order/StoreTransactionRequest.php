@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Order;
 
+use App\Models\Transaction;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateOrderRequest extends FormRequest
+class StoreTransactionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,23 +23,19 @@ class CreateOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'is_products_in_cart'=>'required|boolean|in:1'
+
+            'type'=>'nullable|integer|in:'.Transaction::TYPE_CREDIT,
+           // 'order_id'=>'required|integer|exists:orders,id'
         ];
     }
 
-    protected function prepareForValidation()
+    protected function passedValidation()
     {
-      return  $this->merge([
-            'is_products_in_cart'=>auth()->user()->productInCart->count() > 0 ? 1 : 0
+
+        $this->merge([
+            'user_id' => auth()->id(),
+            'status'=>Transaction::STATUS_SUCCESS,
+
         ]);
-
-   }
-   public function messages()
-   {
-       return
-           [
-               'is_products_in_cart.in' => 'Корзина пуста',
-
-           ];
-   }
+    }
 }

@@ -29,7 +29,7 @@ class DeleteProductInOrderRequest extends FormRequest
     public function messages()
     {
         return [
-            'product_id.exists'=>'Такого продукта нет в корзине'
+            'product_id.exists'=>'Такого продукта нет в заказе'
         ];
     }
 

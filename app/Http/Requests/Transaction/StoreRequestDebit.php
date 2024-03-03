@@ -5,7 +5,7 @@ namespace App\Http\Requests\Transaction;
 use App\Models\Transaction;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class StoreRequestDebit extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,12 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        $types = implode(',',array_keys(Transaction::TYPES));
-        $statuses = implode(',',array_keys(Transaction::STATUSES));
+
+
         return [
             'amount'=>'required|integer',
-            'type'=>'required|integer|in:'.$types,
-            'status'=>'nullable|integer|in:'.$statuses,
-            'order_id'=>'required|integer|exists:orders,id'
+            'type'=>'required|integer|in:'.Transaction::TYPE_DEBIT,
+           // 'order_id'=>'required|integer|exists:orders,id'
         ];
     }
 
@@ -36,7 +35,7 @@ class StoreRequest extends FormRequest
     {
         $this->merge([
             'user_id' => auth()->id(),
-
+            'status'=>Transaction::STATUS_CREATE,
         ]);
     }
 }

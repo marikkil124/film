@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,4 +29,28 @@ const   STATUS_CREATE = 1;
     {
         return $this->belongsTo(User::class);
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_user', 'order_id', 'product_id');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+
+    protected function total(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->products()->withPivot('count_product')->get()->sum(function ($x)
+            {
+               return ($x->getOriginal('pivot_count_product')??1) *  $x->price;
+            })
+
+        );
+
+    }
+
 }
