@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title')->unique();
             $table->foreignId('video_content_id')->index()->constrained('video_contents');
             $table->double('rating')->default(0);
+            $table->year('year')->nullable();
 
 
             $table->timestamps();

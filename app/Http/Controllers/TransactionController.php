@@ -25,7 +25,9 @@ class TransactionController extends Controller
     //платежная система сюда должна отправить статус успех
     public function updateStatusSuccess(Transaction $transaction, UpdateStatusRequest $request)
     {
-        $transaction->update($request->validated());
+
+            $transaction->update($request->validated());
+
         try {
             DB::beginTransaction();
             $transaction->update([
@@ -56,6 +58,8 @@ class TransactionController extends Controller
 
     public function updateStatusExternalFailed(Transaction $transaction)
     {
+
+
         $transaction->update([
             'status' => Transaction::STATUS_EXTERNAL_FAILED,
         ]);

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Promocode\UpdateUserRequest;
 use App\Http\Resources\PromocodeResource;
 use App\Models\Promocode;

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\GenreName;
+use App\Models\Genre;
 use App\Models\VideoContent;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,7 +23,7 @@ class FilmFactory extends Factory
         return [
 
            'title'=>fake()->title,
-           'genre_id'=>GenreName::all()->pluck('id')->random(),
+           'genre_id'=>Genre::all()->pluck('id')->random(),
            'video_content_id'=>VideoContent::all()->pluck('id')->random(),
            'rating'=>fake()->randomFloat(2)
 

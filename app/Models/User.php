@@ -77,6 +77,20 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(Product::class)->wherePivot('order_id',null);
 
     }
+
+    protected function totalInCart(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->productInCart()->withPivot('count_product')->get()->sum(function ($x)
+            {
+
+               return ($x->getOriginal('pivot_count_product')??1) *  $x->price;
+
+            })
+
+        );
+
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();

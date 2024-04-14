@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\admin\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\ProfileFilter;
+use App\Http\Requests\Profile\IndexRequest;
+use App\Http\Resources\Profile\ProfileResource;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 
@@ -11,9 +14,19 @@ class ProfileController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(IndexRequest $request)
     {
-        //
+        $data = $request->validated();
+
+
+        $filter = Profile::filter($data);
+
+
+
+        return ProfileResource::make($filter->get());
+
+
+
     }
 
     /**

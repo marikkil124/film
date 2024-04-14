@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Events\baba;
 use App\Models\Film;
 use App\Models\Genre;
+use App\Models\ProductUser;
 use App\Models\User;
 use App\Models\Profile;
 
@@ -35,12 +37,16 @@ class GoCommand extends Command
 //        $film = Film::where('id',6)->get();
 //        $user = User::first();
 //        dd($user->is_admin);
-        User::create([
-            'name' => 'marik',
-            'email' => 'marik@mail.ru',
-            'password' => Hash::make('123123'),
 
-        ]);
+
+        dd(env('app_url'));
+
+//        User::create([
+//            'name' => 'runli',
+//            'email' => 'runli@mail.ru',
+//            'password' => Hash::make('123123'),
+//
+//        ]);
 
        // dd($user->profile->nickname);
         //dd($film->genre->toarray());

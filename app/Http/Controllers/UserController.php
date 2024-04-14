@@ -45,10 +45,11 @@ class UserController extends Controller
     {
         $data = $request->validated();
 
-        auth()->user()->productInCart()->syncWithoutDetaching($data);
+      auth()->user()->productInCart()->syncWithoutDetaching($data);
+
 
         return response()->json([
-            'message' => 'продукт доабвлен' ]);
+            'message' => 'продукт доабвлен','total'=>auth()->user()->total_in_cart ,'count'=> auth()->user()->productInCart()->count()]);
 
     }
 
@@ -78,9 +79,18 @@ class UserController extends Controller
         auth()->user()->productInCart()->detach($data['product_id']);
 
         return response()->json([
-            'message' => 'продукт удален из корзины' ]);
+            'product' => auth()->user()->productInCart ]);
 
 
     }
+
+    public function productInCart()
+    {
+        $products = auth()->user()->productInCart;
+        $total = auth()->user()->total_in_cart;
+        return inertia('Product/cart/cart',compact('products','total'));
+
+    }
+
 
 }

@@ -45,7 +45,7 @@ Route::middleware(['jwt.auth'])->group(function () {
     Route::post('/user/destroy-product-cart', [\App\Http\Controllers\UserController::class, 'deleteProductInCart']);
 
 
-    Route::patch('/promocode/update-user-id', [\App\Http\Controllers\PromocodeController::class, 'updateUser']);
+    Route::patch('/promocode/update-user-id', [\App\Http\Controllers\admin\PromocodeController::class, 'updateUser']);
     Route::post('/order', [\App\Http\Controllers\OrderController::class, 'store']);
 
     //обновление статуса в заказе
@@ -60,12 +60,13 @@ Route::middleware(['jwt.auth'])->group(function () {
         //создание транзакции (пополнение баланса)
     Route::post('/transaction/store-type-debit', [\App\Http\Controllers\TransactionController::class, 'storeTypeDebit']);
     //платежная система сюда должна отправить статус успех
-    Route::patch('/transaction/{transaction}/status-success', [\App\Http\Controllers\TransactionController::class, 'updateStatusSuccess']);
+   // Route::patch('/transaction/{transaction}/status-success', [\App\Http\Controllers\TransactionController::class, 'updateStatusSuccess']);
     //платежная система сюда должна отправить статус ошибка
     Route::patch('/transaction/{transaction}/status-external-failed', [\App\Http\Controllers\TransactionController::class, 'updateStatusExternalFailed']);
 
 
 });
+Route::patch('/transaction/{transaction}/status-success', [\App\Http\Controllers\TransactionController::class, 'updateStatusSuccess']);
+Route::get('/profiles', [\App\Http\Controllers\admin\Profile\ProfileController::class,'index']);
 
-
-
+Route::resource('products',\App\Http\Controllers\ProductController::class);
