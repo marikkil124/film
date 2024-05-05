@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class FavouriteFilm extends Model
 {
     use HasFactory;
+
 }

@@ -29,7 +29,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('products',\App\Http\Controllers\Admin\ProductController::class);
 });
 
@@ -44,12 +44,24 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user/product-cart', [\App\Http\Controllers\UserController::class, 'productInCart'])->name('cart');
 
+
+
+    Route::prefix('favourite')->name('favourite.')->group(function () {
+        //мои любимые фильмы
+        Route::prefix('films')->group(function () {
+            Route::get('/', \App\Http\Controllers\FavouriteFilm\IndexController::class)->name('films');
+        });
+    });
 });
+
+Route::get('/films', [\App\Http\Controllers\FilmController::class, 'index']);
+
 //
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';

@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Film extends Model
 {
     use HasFactory;
-
+    use HasFilter;
     protected $guarded = false;
 
     public function genre()
@@ -37,9 +39,14 @@ class Film extends Model
         );
     }
 
-    public function scopeMyFilms()
+    public function image()
     {
+        return $this->hasMany(Image::class);
+    }
 
+    public function images(): MorphMany
+    {
+        return $this->morphMany(Image::class, 'imageable');
     }
 
 

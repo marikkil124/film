@@ -12,6 +12,7 @@ use App\Models\ProductUser;
 use App\Services\Admin\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 use mysql_xdevapi\Exception;
 
 class ProductController extends Controller
@@ -32,8 +33,8 @@ class ProductController extends Controller
             return $products;
         }
 
-       //return inertia('Product/index',compact('products'));
-       return inertia('Admin/Layout',compact('products'));
+        return inertia('Product/index',compact('products'));
+       //return inertia('Admin/Layout',compact('products'));
 
     }
 

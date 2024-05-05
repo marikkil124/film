@@ -17,9 +17,9 @@ class baba
     /**
      * Create a new event instance.
      */
-    public function __construct(public $data = null)
+    public function __construct()
     {
-        dd($this->data);
+
     }
 
     /**
