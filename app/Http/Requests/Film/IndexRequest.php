@@ -26,4 +26,6 @@ class IndexRequest extends FormRequest
             'title_eng'=>'nullable|string',
         ];
     }
+
+
 }

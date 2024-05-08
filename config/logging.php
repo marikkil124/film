@@ -126,6 +126,12 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        'schedule' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/sched.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+
+        ],
     ],
 
 ];

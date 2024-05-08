@@ -28,7 +28,7 @@ class FilmFilter
         }
         return $builder;
     }
-    public function title_eng(Builder $query,$value)
+    public function titleEng(Builder $query,$value)
     {
         $query->where('title_eng', 'ilike', "%{$value}%");
     }
