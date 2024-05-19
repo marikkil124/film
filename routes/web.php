@@ -52,9 +52,12 @@ Route::middleware('auth')->group(function () {
             Route::get('/', \App\Http\Controllers\FavouriteFilm\IndexController::class)->name('films');
         });
     });
+
+    Route::get('/films', [\App\Http\Controllers\FilmController::class, 'index']);
+    Route::post('/film', [\App\Http\Controllers\FilmController::class, 'store']);
 });
 
-Route::get('/films', [\App\Http\Controllers\FilmController::class, 'index']);
+
 
 //
 Route::middleware('auth')->group(function () {

@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Film;
 
 use App\Http\Resources\Genre\GenreResource;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,9 +18,11 @@ class FilmResource extends JsonResource
     {
         return [
             'title'=>$this->title,
-            'video_content_title'=>$this->videoContent->title,
             'genres'=>GenreResource::collection($this->genre),
-            'rating'=>$this->rating
+            'year'=>$this->year,
+            'type'=>$this->videocontent->title,
+            'url'=>Image::where('imageable_id',$this->id)->pluck('path')->first(),
+
         ];
     }
 }

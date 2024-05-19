@@ -9,4 +9,6 @@ class FavouriteFilm extends Model
 {
     use HasFactory;
 
+
+
 }

@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('films', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
-            $table->string('title_eng')->nullable()->unique();
+            $table->string('title');
+            $table->string('title_eng')->nullable();
+            $table->text('description')->nullable();
             $table->foreignId('video_content_id')->index()->constrained('video_contents');
             $table->double('rating')->nullable();
             $table->year('year')->nullable();

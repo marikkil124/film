@@ -12,6 +12,7 @@ class Film extends Model
 {
     use HasFactory;
     use HasFilter;
+
     protected $guarded = false;
 
     public function genre()
@@ -49,5 +50,13 @@ class Film extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
+    public function film()
+    {
+        return $this->belongsToMany(Film::class, 'favourite_films', 'film_id', 'id');
+    }
+    public function user()
+    {
+        return $this->belongsToMany(User::class, 'favourite_films', 'user_id', 'id');
+    }
 
 }
