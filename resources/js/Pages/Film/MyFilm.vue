@@ -21,6 +21,7 @@ const confirmUserDeletion = () => {
     confirmingUserDeletion.value = true;
 };
 const check=ref(false)
+
 const form = useForm({
     title: '',
     title_eng: '',
@@ -57,9 +58,8 @@ const addFilm = (film) => {
 
     })
         .then(res=> {
-            films.value = res.data
-
-            console.log(films.value)
+         // check.value=res
+            console.log(res)
         });
 
 };
@@ -139,7 +139,8 @@ Myfilms()
                             </td>
                             <td class="px-4 py-2 border-b">{{ film.title }}</td>
                             <td class="px-4 py-2 border-b">{{ film.year }}</td>
-                            <td class="px-4 py-2 border-b">{{ film.type }}</td>
+
+                            <td  v-for=" type in film.type"class="px-4 py-2 border-b">{{type}}</td>
                             <td class="px-4 py-2 border-b">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"  class="w-6 h-6 fill-blue-500 cursor-pointer"  v-if="!check  && filmId===null"  @click="addFilm(film)">
                                     <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />

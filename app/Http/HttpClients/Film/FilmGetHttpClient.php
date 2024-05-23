@@ -3,6 +3,7 @@
 namespace App\Http\HttpClients\Film;
 
 use App\Models\Film;
+use App\Models\VideoContent;
 use Illuminate\Support\Facades\Http;
 
 
@@ -19,15 +20,17 @@ class FilmGetHttpClient
         foreach ($response->json('docs') as $item) {
 
             $map = [];
-            $map['id'] = $item['id'];
+            $map['film_id_api'] = $item['id'];
             $map['title'] = $item['name'];
             $map['title_eng'] = $item['alternativeName'];
             $map['url'] = $item['poster']['url'];
             $map['year'] = $item['year'];
             $map['genres'] = $item['genres'];
             $map['type'] = self::getTypeFilm($item['type']);
+            $map['type_number'] = $item['typeNumber'];
             $maps[$item['id']] = $map;
         }
+
         return $maps;
 
 
@@ -35,14 +38,13 @@ class FilmGetHttpClient
 
     public static function getTypeFilm($type)
     {
-        if ($type == 'movie')
-            return 'Фильмы';
-        if ($type == 'tv-series')
-            return 'Сериалы';
-        if ($type == 'cartoon')
-            return 'Анимация';
-        else
-            return $type;
+        $map = [];
+        $arr = array_search($type,VideoContent::getType);
+
+        $map[$arr] = $type;
+
+           return $map ;
+
     }
 
 }

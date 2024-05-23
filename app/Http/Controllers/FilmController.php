@@ -35,10 +35,21 @@ class FilmController extends Controller
 
         if (isset($data['title']) or isset($data['title_eng'])) {
             $FilmDataBase = Film::filter($data)->with(['images'])->get();
+
             if ($FilmDataBase->isEmpty()) {
                 $filmsAPI = FilmGetHttpClient::getFilms($data);
                 return $filmsAPI;
             } else {
+
+                $MyFilms = auth()->user()->film;
+
+                foreach ($FilmDataBase as $film) {
+                    if ($MyFilms->contains('id', $film->id)) {
+                        $film->is_my_film = 'my';
+                    } else
+                        $film->is_my_film = 'mo';
+                }
+
                 return FilmResource::collection($FilmDataBase)->resolve();
             }
         } else
@@ -50,43 +61,46 @@ class FilmController extends Controller
     {
         $data = $request->validated();
 
+        $genres = Genre::all();
+        $genreIds = [];
+        $i = 0;
+
         foreach ($data['genres'] as $genre) {
             foreach ($genre as $name) {
-                Genre::updateOrCreate(
-                    ['title' => $name]
-                );
 
+                if ($genres->doesntContain('title', $name))
+                    Genre::updateOrCreate(['title' => $name]);
+
+
+                $genreId = Genre::where('title', $name)->pluck('id');
+                $genreIds[$i] = $genreId[0];
+                $i++;
             }
         }
-        VideoContent::updateOrCreate(
-            ['title' => $data['type']]
-        );
-
-        $type = VideoContent::where('title', $data['type'])->pluck('id')->first();
 
         $film = Film::updateOrCreate([
             'title' => $data['title'],
             'title_eng' => $data['title_eng'],
             'year' => $data['year'],
-            'video_content_id' => $type,
+            'video_content_id' => $data['type_number'] ?? null,
         ]);
 
 
-        foreach ($data['genres'] as $genre) {
-            foreach ($genre as $name) {
-
-                $genreId = Genre::where('title', $name)->pluck('id')->first();
-                $film->genre()->attach($genreId);
-            }
-        }
+        $film->genre()->sync($genreIds);
 
 
-        Image::create([
+        Image::updateOrcreate([
             'path' => $data['url'],
             'imageable_id' => $film->id,
             'imageable_type' => Film::class
         ]);
 
+        auth()->user()->film()->attach($film->id);
+
+        return response()->json([
+            '213' => 'asd',
+
+        ]);
 
     }
 

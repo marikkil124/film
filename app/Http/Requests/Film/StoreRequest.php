@@ -27,7 +27,8 @@ class StoreRequest extends FormRequest
             'url'=>'nullable|string',
             'year'=>'nullable|integer',
             'genres'=>'nullable|array',
-            'type'=>'nullable|string',
+            'type_number'=>'nullable|integer|exists:video_contents,type_number',
+            'film_id_api'=>'nullable|integer',
         ];
     }
 

@@ -12,6 +12,8 @@ class Genre extends Model
     protected $guarded = false;
 
 
+
+
     public function film()
     {
         return $this->belongsToMany(Film::class, 'genre_films', 'genre_id','film_id');

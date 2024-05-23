@@ -18,10 +18,13 @@ class FilmResource extends JsonResource
     {
         return [
             'title'=>$this->title,
+            'title_eng'=>$this->title_eng,
             'genres'=>GenreResource::collection($this->genre),
             'year'=>$this->year,
             'type'=>$this->videocontent->title,
             'url'=>Image::where('imageable_id',$this->id)->pluck('path')->first(),
+            'isMyfilm'=>$this->is_my_film,
+            'xx'=>$this->xx,
 
         ];
     }

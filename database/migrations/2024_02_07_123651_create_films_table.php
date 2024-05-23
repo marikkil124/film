@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('video_content_id')->index()->constrained('video_contents');
             $table->double('rating')->nullable();
             $table->year('year')->nullable();
+            $table->unsignedBigInteger('film_id_api')->nullable();
 
 
             $table->timestamps();

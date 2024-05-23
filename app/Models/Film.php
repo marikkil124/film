@@ -15,6 +15,7 @@ class Film extends Model
 
     protected $guarded = false;
 
+
     public function genre()
     {
         return $this->belongsToMany(Genre::class, 'genre_films', 'film_id', 'genre_id');
@@ -52,11 +53,13 @@ class Film extends Model
 
     public function film()
     {
-        return $this->belongsToMany(Film::class, 'favourite_films', 'film_id', 'id');
+        return $this->belongsToMany(Film::class, 'favourite_films', 'film_id', 'user_id');
     }
     public function user()
     {
         return $this->belongsToMany(User::class, 'favourite_films', 'user_id', 'id');
     }
+
+
 
 }
