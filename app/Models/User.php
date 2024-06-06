@@ -93,7 +93,7 @@ class User extends Authenticatable implements JWTSubject
     }
     public function film()
     {
-        return $this->belongsToMany(Film::class, 'favourite_films', 'user_id', 'film_id');
+        return $this->belongsToMany(Film::class, 'favourite_films', 'user_id', 'film_id')->with(['images','genre','videoContent']);
     }
     public function getJWTIdentifier()
     {

@@ -48,13 +48,15 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('favourite')->name('favourite.')->group(function () {
         //мои любимые фильмы
-        Route::prefix('films')->group(function () {
+        Route::prefix('film')->group(function () {
             Route::get('/', \App\Http\Controllers\FavouriteFilm\IndexController::class)->name('films');
+            Route::delete('/{id}', \App\Http\Controllers\FavouriteFilm\DeleteController::class);
         });
     });
 
     Route::get('/films', [\App\Http\Controllers\FilmController::class, 'index']);
     Route::post('/film', [\App\Http\Controllers\FilmController::class, 'store']);
+
 });
 
 

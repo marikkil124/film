@@ -23,8 +23,13 @@ class FilmResource extends JsonResource
             'year'=>$this->year,
             'type'=>$this->videocontent->title,
             'url'=>Image::where('imageable_id',$this->id)->pluck('path')->first(),
-            'isMyfilm'=>$this->is_my_film,
-            'xx'=>$this->xx,
+            'film_id_api'=>$this->film_id_api,
+            'type_number'=>$this->videocontent->type_number??null,
+            'video_content'=>$this->videocontent,
+            'is_my_film'=>$this->is_my_film??null,
+            'description'=>$this->description,
+            'id'=>$this->id,
+
 
         ];
     }

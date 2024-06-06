@@ -36,18 +36,13 @@
 import {reactive, ref} from 'vue';
 import { router } from '@inertiajs/vue3'
 import MyFilm from "@/Pages/Film/MyFilm.vue"
-import AdminProduct from "@/Pages/Admin/Product/index.vue"
+
 
 const currentComponent = ref(null);
 
 function loadPages(page)
 {
     currentComponent.value = page;
-    axios.get('/products').then(x=>{
-        console.log(x)
-    }).catch(c=>{
-        console.log(c)
-    })
 
 
 }

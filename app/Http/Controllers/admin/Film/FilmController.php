@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Film\FilmRequest;
 use App\Http\Resources\Film\FilmResource;
 use App\Models\Film;
-use App\Services\FilmService;
+use App\Services\Admin\FilmService;
 
 class FilmController extends Controller
 {

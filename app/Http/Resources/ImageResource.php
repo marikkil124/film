@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Resources\FavouriteFilm;
+namespace App\Http\Resources;
 
-use App\Http\Resources\Genre\GenreResource;
-use App\Http\Resources\ImageResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class IndexResource extends JsonResource
+class ImageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +14,6 @@ class IndexResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-
         return parent::toArray($request);
-
-
-
     }
 }

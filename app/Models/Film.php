@@ -60,6 +60,15 @@ class Film extends Model
         return $this->belongsToMany(User::class, 'favourite_films', 'user_id', 'id');
     }
 
+    public static function IsMyFilm($film)
+    {
+        $MyFilms = auth()->user()->film;
 
+        if ($MyFilms->contains('id',$film->id)) {
+            return true;
+        } else
+            return  false;
+
+    }
 
 }

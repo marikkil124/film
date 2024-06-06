@@ -15,5 +15,6 @@ class Image extends Model
     {
         return $this->morphTo();
     }
+    CONST NOT_FOUND_IMAGE='https://oldestatehotel.com/files/oldestate/image/no_product.jpg';
 
 }
