@@ -31,7 +31,9 @@ class FilmGetHttpClient
             $map['genres'] = $item['genres'];
             $map['type'] = self::getTypeFilm($item['typeNumber']);
             $map['type_number'] = $item['typeNumber'];
-            $map['description'] = $item['shortDescription'];$map['count'] =1 ;
+            $map['description'] = $item['shortDescription'];
+            $map['count'] =1 ;
+
             //проверка есть ли в моих фильмах фильм из апи
             if ($filmId->isNotEmpty())
                 $map['is_my_film'] = Film::IsMyFilm($filmId->first());

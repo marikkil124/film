@@ -53,11 +53,11 @@ class Film extends Model
 
     public function film()
     {
-        return $this->belongsToMany(Film::class, 'favourite_films', 'film_id', 'user_id');
+        return $this->belongsToMany(Film::class, 'favourite_films', 'film_id', 'user_id')->withPivot('estimate') ->withTimestamps();;
     }
     public function user()
     {
-        return $this->belongsToMany(User::class, 'favourite_films', 'user_id', 'id');
+        return $this->belongsToMany(User::class, 'favourite_films', 'user_id', 'id')->withPivot('estimate') ->withTimestamps();;
     }
 
     public static function IsMyFilm($film)

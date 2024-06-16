@@ -178,7 +178,7 @@ function paginationSearch(url)
             </div>
 
 
-            <div class="flex flex-col items-center">
+            <div  v-if="films" class="flex flex-col items-center">
                 <!-- Help text -->
                 <span class="text-sm text-gray-700 dark:text-gray-400">
       Показана <span class="font-semibold text-gray-900 dark:text-white">{{pagination.current_page}}</span>   Страница из <span class="font-semibold text-gray-900 dark:text-white">{{pagination.last_page}}</span></span>
@@ -204,7 +204,7 @@ function paginationSearch(url)
         </Modal>
 
     </form>
-    <div>
+    <div class="">
     <film-list  :film="propFilm" > </film-list>
     </div>
 </template>

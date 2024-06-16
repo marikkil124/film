@@ -2,7 +2,7 @@
     <div >
         <div class="flex h-screen bg-white pl-1 p-8 mx-auto  max-w-7xl">
             <!-- Левая боковая панель -->
-            <div class="w-1/6   p-4 bg-white border-r-2 border-gray-200   " >
+            <div class="w-1/5  p-4 bg-white border-r-2 border-gray-200   " >
 
                 <ul class="  ">
                     <li class="  text-sm text-center text-sky-500 font-bold mb-4 block py-2 hover:text-blue-500"> <!-- Добавьте класс mr-4 для отступа между элементами -->
@@ -14,17 +14,14 @@
             </div>
 
             <!-- Правая область контента -->
-            <div class="w-5/6 p-4   ">
+            <div class="w-5/6 p-4     ">
                 <component :is="currentComponent" ></component>
             </div>
 
-            <div class="w-1/5  text-white p-4 bg-white border-l-2 border-gray-200 rounded-lg  " >
-
+            <div class="w-2/4  text-white p-4 bg-white border-l-2 border-gray-200 rounded-lg  " >
                 <ul class="text-center">
-                    <li><div class="text-lg  text-gray-500 font-bold mb-2 block py-1 bg-gray-200"><span>Оценки</span></div></li>
+                    <li><div class="text-lg  text-gray-500 font-bold mb-2 block py-1 "><span>Оценки</span></div></li>
                 </ul>
-
-
             </div>
 
         </div>

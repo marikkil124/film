@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('film')->group(function () {
             Route::get('/', \App\Http\Controllers\FavouriteFilm\IndexController::class)->name('films');
             Route::delete('/{id}', \App\Http\Controllers\FavouriteFilm\DeleteController::class);
+            Route::patch('/{film}/estimate/', \App\Http\Controllers\FavouriteFilm\StoreEstimateController::class);
         });
     });
 

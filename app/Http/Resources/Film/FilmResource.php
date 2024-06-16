@@ -29,6 +29,7 @@ class FilmResource extends JsonResource
             'is_my_film'=>$this->is_my_film??null,
             'description'=>$this->description,
             'id'=>$this->id,
+            'estimate'=>$this->pivot->estimate??null,
 
 
         ];
