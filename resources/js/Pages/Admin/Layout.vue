@@ -18,11 +18,7 @@
                 <component :is="currentComponent" ></component>
             </div>
 
-            <div class="w-2/4  text-white p-4 bg-white border-l-2 border-gray-200 rounded-lg  " >
-                <ul class="text-center">
-                    <li><div class="text-lg  text-gray-500 font-bold mb-2 block py-1 "><span>Оценки</span></div></li>
-                </ul>
-            </div>
+
 
         </div>
     </div>
@@ -33,6 +29,7 @@
 import {reactive, ref} from 'vue';
 import { router } from '@inertiajs/vue3'
 import MyFilm from "@/Pages/Film/MyFilm.vue"
+import Estimation from "@//Components/Estimation.vue"
 
 
 const currentComponent = ref(null);
@@ -41,8 +38,9 @@ function loadPages(page)
 {
     currentComponent.value = page;
 
-
 }
+
+
 
 
 </script>

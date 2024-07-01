@@ -106,17 +106,17 @@ const mar = ref(false)
                         <img class="w-8 h-8 rounded-full" :src="film.url" alt="Neil image">
                     </div>
                     <div class="flex-1 min-w-0">
-                        <p
+                        <div
                             @click="detail(key), check=!check"
                             class="text-sm font-medium text-gray-900 truncate dark:text-white hover:underline hover:text-pink-500 hover:cursor-pointer"
                         >
                             {{ film.title }} /
-                            <span class="text-sm text-gray-800">
+                            <span class="text-sm text-gray-800 hover:text-pink-500 hover:cursor-pointer">
 
                                  {{ film.year }}
 
                             </span>
-                        </p>
+                        </div>
 
                         <div
                             v-if="detailId === key && check"
