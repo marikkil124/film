@@ -9,15 +9,13 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import {router, useForm} from "@inertiajs/vue3";
 
 import FilmList from "@/Pages/Film/FilmList.vue";
-import Estimation from "@/Components/Estimation.vue";
+
 import axios from "axios";
 
 const propFilm=ref({})
 const confirmingUserDeletion = ref(false);
 const films = ref()
-const labels = ref([])
-const data = ref([])
-const loaded = ref(false)
+
 const closeModal = () => {
     confirmingUserDeletion.value = false;
     form.reset();
@@ -69,17 +67,8 @@ const addFilm = (film) => {
 
 };
 
-function getEstimates() {
-    axios.get('/favourite/film/estimate').then(response => {
-        labels.value = Object.keys(response.data.count)
-        data.value = Object.values(response.data.count)
-
-        loaded.value= true
-    })
-}
 
 
-getEstimates()
 function paginationSearch(url)
 {
 
@@ -219,11 +208,7 @@ function paginationSearch(url)
         <div class=" flex w-3/4 justify-center ">
             <film-list  :film="propFilm" > </film-list>
         </div>
-        <div class="w-1/4  text-white p-4 bg-white border-l-2 border-gray-200 rounded-lg  " >
-            <ul class="text-center">
-                <li><div class="text-lg  text-gray-500 font-bold mb-2 block py-1 "><estimation v-if="loaded" :data = "data" :labels="labels"></estimation></div></li>
-            </ul>
-        </div>
+
     </div>
 
 </template>

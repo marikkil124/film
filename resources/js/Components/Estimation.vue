@@ -63,22 +63,31 @@ const chartOptions = ref({
             ticks: {
                 // Include a dollar sign in the ticks
                display:true,
+
                 showLabelBackdrop:false,
                 font: {
                     weight: 'bold', // Устанавливаем жирный шрифт для меток оси Y,
 
                 }
-
             }
         },
         y: {
+
             grid: {
                 display: false // Убираем сетку по оси Y
             },
+
+            align: 'start', // Начало оси Y
             ticks: {
+                callback: function(value, index) {
+                    return `Оценка ${props.labels[value]}`;
+                },
+                rotation:0,
+                crossAlign: 'near', // Метки рядом с полосами
                 font: {
                     weight: 'bold', // Устанавливаем жирный шрифт для меток оси Y
-                    size:16
+                    size:16,
+
                 }
             }
 
@@ -97,8 +106,9 @@ const chartOptions = ref({
                         weight: 'bold'
                     }
                 },
+
                 value: {
-                    color: 'green'
+                    color: 'black'
                 }
             }
         }
